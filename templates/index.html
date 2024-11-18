@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Add Student</h1>
+<form method="POST" action="/add">
+<input type="text" name="name" placeholder="Input Student" required >
+    <button type="submit">Add</button>
+</form>
+<br>
+<br>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>index</th>
+           <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for index, student in students %}
+        <tr>
+            <td>{{index}}</td>
+            <td>{{student}}</td>
+            <td >
+
+                <form method="POST" action="/edit_student/{{ index }}">
+                    <input type="text" name="new_name" value="{{student}}" required/>
+                    <button type="submit">Submit</button>
+
+
+                <a href="/delete/{{student}}" >Delete With Student Name</a>
+                <a href="/delete-with-index/{{index}}">Delete With Index</a>
+                <a href="/select/{{student}}">Select Student</a>
+                </form>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
